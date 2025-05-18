@@ -1,7 +1,5 @@
 package com.brutal.generics;
-
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 public class GenericController <T extends BaseEntity, Long>{

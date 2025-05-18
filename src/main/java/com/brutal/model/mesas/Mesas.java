@@ -16,4 +16,5 @@ import lombok.Setter;
 
 public class Mesas extends BaseEntity {
     private Integer numero;
+    private String estado;
 }

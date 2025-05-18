@@ -1,8 +1,11 @@
 package com.brutal.generics;
 
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class GenericService <T extends BaseEntity, Long>{
     private final GenericRepository genericRepository;
 
