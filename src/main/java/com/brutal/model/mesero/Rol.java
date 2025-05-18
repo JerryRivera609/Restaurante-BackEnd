@@ -4,4 +4,5 @@ public enum Rol {
     Cocina,
     Frios,
     Bartender,
+    Mozo,
 }

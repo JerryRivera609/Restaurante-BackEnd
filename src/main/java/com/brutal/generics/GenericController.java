@@ -1,10 +1,11 @@
 package com.brutal.generics;
-
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.yaml.snakeyaml.events.Event;
 
 import java.util.List;
 
-public class GenericController <T extends BaseEntity, Long>{
+public class GenericController <T extends BaseEntity, ID>{
     private final GenericService genericService;
 
     public GenericController(GenericService genericService){
@@ -15,6 +16,8 @@ public class GenericController <T extends BaseEntity, Long>{
     public List<T> findAll(){
         return genericService.listar();
     }
+
+
 
     @PostMapping
     public T crear(@RequestBody T t){
@@ -28,8 +31,9 @@ public class GenericController <T extends BaseEntity, Long>{
         return id;
     }
 
-    @PutMapping
-    public T guardar(@RequestBody T t){
+    @PutMapping("/update")
+    public T actualizar(@PathVariable("id") Long id, @RequestBody T t){
+        t.setId(id);
         genericService.actualizar(t);
         return t;
     }

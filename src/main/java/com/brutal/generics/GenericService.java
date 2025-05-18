@@ -1,9 +1,12 @@
 package com.brutal.generics;
 
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Optional;
 
-public class GenericService <T extends BaseEntity, Long>{
+@Service
+public class GenericService <T extends BaseEntity, ID>{
     private final GenericRepository genericRepository;
 
     public GenericService(GenericRepository genericRepository){
@@ -22,14 +25,16 @@ public class GenericService <T extends BaseEntity, Long>{
         genericRepository.delete(t);
     }
 
-    public void actualizar(T t){
-        Optional buscar =genericRepository.findById(t. getId());
-        if(buscar.isPresent()){
-            genericRepository.save(t);
+    public T actualizar(T t) {
+        Optional<T> buscar = genericRepository.findById(t.getId());
+        if (buscar.isPresent()) {
+            return (T) genericRepository.save(t);
         }
+        return null;
     }
-    public void eliminarPorId(Long id){
+    public void eliminarPorId(ID id){
         genericRepository.deleteById(id);
     }
+
 
 }
