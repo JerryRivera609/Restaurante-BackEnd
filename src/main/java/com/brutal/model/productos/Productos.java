@@ -20,6 +20,6 @@ public class Productos extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private Tipo tipo;
     private Double precio;
-    private String descripcion;
+    private String resumen;
     private String img;
 }

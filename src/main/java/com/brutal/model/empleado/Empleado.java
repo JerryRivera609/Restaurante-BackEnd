@@ -1,4 +1,4 @@
-package com.brutal.model.mesero;
+package com.brutal.model.empleado;
 
 
 import com.brutal.generics.BaseEntity;

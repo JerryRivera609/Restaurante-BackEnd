@@ -16,5 +16,6 @@ import lombok.Setter;
 
 public class Mesas extends BaseEntity {
     private Integer numero;
-    private String estado;
+    @Enumerated(EnumType.STRING)
+    private Estado estado;
 }

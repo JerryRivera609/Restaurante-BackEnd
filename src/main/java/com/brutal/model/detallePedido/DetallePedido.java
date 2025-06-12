@@ -1,12 +1,10 @@
 package com.brutal.model.detallePedido;
 
 import com.brutal.generics.BaseEntity;
+import com.brutal.model.mesas.Estado;
 import com.brutal.model.pedidos.Pedidos;
 import com.brutal.model.productos.Productos;
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,6 +26,7 @@ public class DetallePedido extends BaseEntity {
     private Productos producto;
     private Integer cantidad;
     private Double precio;
-
+    @Enumerated(EnumType.STRING)
+    private EstadoPedido estado;
 
 }

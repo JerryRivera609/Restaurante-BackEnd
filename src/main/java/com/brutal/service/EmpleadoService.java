@@ -1,7 +1,7 @@
 package com.brutal.service;
 
 import com.brutal.generics.GenericService;
-import com.brutal.model.mesero.Empleado;
+import com.brutal.model.empleado.Empleado;
 import com.brutal.repository.EmpleadoRepository;
 import org.springframework.stereotype.Service;
 

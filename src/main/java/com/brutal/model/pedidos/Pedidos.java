@@ -2,7 +2,7 @@ package com.brutal.model.pedidos;
 
 import com.brutal.generics.BaseEntity;
 import com.brutal.model.mesas.Mesas;
-import com.brutal.model.mesero.Empleado;
+import com.brutal.model.empleado.Empleado;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

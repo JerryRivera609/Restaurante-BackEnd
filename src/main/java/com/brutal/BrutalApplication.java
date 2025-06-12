@@ -8,6 +8,7 @@ public class BrutalApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(BrutalApplication.class, args);
+
 	}
 
 }
