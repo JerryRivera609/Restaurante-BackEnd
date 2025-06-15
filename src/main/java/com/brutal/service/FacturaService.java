@@ -28,7 +28,6 @@ public class FacturaService extends GenericService <Factura, Long> {
                 .orElseThrow(()-> new RuntimeException("No se encontró el pedido"));
 
         Factura factura = new Factura();
-        factura.setId(dto.getId());
         factura.setFechaHora(dto.getFecha());
         factura.setTotal(dto.getPrecioTotal());
         factura.setPedido(pedido);

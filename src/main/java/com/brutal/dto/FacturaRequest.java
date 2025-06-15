@@ -10,7 +10,6 @@ import java.time.OffsetDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class FacturaRequest {
-    private Long id;
     private OffsetDateTime fecha;
     private Double precioTotal;
     private Long idPedido;
