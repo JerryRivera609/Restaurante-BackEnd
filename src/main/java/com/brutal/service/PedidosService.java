@@ -35,7 +35,6 @@ public class PedidosService extends GenericService <Pedidos, Long> {
         Mesas mesa = mesasRepository.findById(dto.getIdMesa())
                 .orElseThrow(() -> new EntityNotFoundException("Mesa no existe"));
 
-
         //Actualizar el Estado de la mesa
         mesa.setEstado(com.brutal.model.mesas.Estado.Ocupado);
         mesasRepository.save(mesa);

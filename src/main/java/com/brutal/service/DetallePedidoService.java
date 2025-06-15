@@ -95,7 +95,7 @@ public class DetallePedidoService extends GenericService<DetallePedido, Long> {
         //    simpMessagingTemplate.convertAndSend("/topic/" + tipo, response);
         //}
 
-        // Enviar por WebSocket cada detalle guardado
+        // envviar por websdocket cada detalle guardado
         for (DetallePedido detalle : detalles) {
             DetallePedidoResponse response = mapearADetallePedidoResponse(detalle);
             if ("Cocina".equals(response.getTipo())) {

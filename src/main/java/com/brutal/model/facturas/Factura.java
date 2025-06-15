@@ -27,5 +27,10 @@ public class Factura extends BaseEntity {
     @CreationTimestamp
     @Column(name = "fecha_hora", columnDefinition = "TIMESTAMPTZ")
     private OffsetDateTime fechaHora;
+    @Enumerated(EnumType.STRING)
+    private EstadoFactura estadoFactura;
+    @Enumerated(EnumType.STRING)
+    private MedioDePago medioDePago;
+
 
 }

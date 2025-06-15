@@ -33,8 +33,7 @@ public class DetallePedidoController extends GenericController <DetallePedido, L
     }
 
     @PostMapping("/guardar")
-    public ResponseEntity<Void> guardarDetalles(
-            @RequestBody ListaDetallePedidoRequest request) {
+    public ResponseEntity<Void> guardarDetalles(@RequestBody ListaDetallePedidoRequest request) {
         detallePedidoService.guardarDetalles(request);
         return ResponseEntity.ok().build();
     }
