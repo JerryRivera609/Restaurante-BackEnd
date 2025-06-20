@@ -1,5 +1,6 @@
 package com.brutal.controller;
 
+import com.brutal.dto.ActualizarFacturaRequest;
 import com.brutal.dto.FacturaRequest;
 import com.brutal.dto.FacturaResponse;
 import com.brutal.generics.GenericController;
@@ -32,5 +33,13 @@ public class FacturaController extends GenericController <Factura, Long> {
     public ResponseEntity<Factura> guardarFactura(@RequestBody FacturaRequest facturaRequest){
         Factura factura = facturaService.crearFactura(facturaRequest);
         return ResponseEntity.ok(factura);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<String> actualizarFactura(@PathVariable Long id, @RequestBody ActualizarFacturaRequest request){
+        System.out.println("Estado recibido: " + request.getEstado());
+        System.out.println("Medio de pago recibido: " + request.getMedioDePago());
+        facturaService.actualizarFactura(id, request);
+        return ResponseEntity.ok("Factura Actualizada");
     }
 }

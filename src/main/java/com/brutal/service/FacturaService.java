@@ -1,5 +1,6 @@
 package com.brutal.service;
 
+import com.brutal.dto.ActualizarFacturaRequest;
 import com.brutal.dto.FacturaRequest;
 import com.brutal.dto.FacturaResponse;
 import com.brutal.generics.GenericService;
@@ -79,6 +80,19 @@ public class FacturaService extends GenericService <Factura, Long> {
 
             return dto;
         }).collect(Collectors.toList());
+    }
+
+    public void actualizarFactura (Long id, ActualizarFacturaRequest request){
+        Factura factura = facturaRepository.findById(id).
+                orElseThrow(()-> new RuntimeException("No se encontró el id de la factura que se desea aactualizar"));
+        if (request.getEstado() != null){
+            factura.setEstado(EstadoFactura.valueOf(request.getEstado()));
+        }
+        if (request.getMedioDePago() != null){
+            factura.setMedioDePago(MedioDePago.valueOf(request.getMedioDePago()));
+        }
+
+        facturaRepository.save(factura);
     }
 
 
