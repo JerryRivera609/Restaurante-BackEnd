@@ -24,11 +24,15 @@ public class Factura extends BaseEntity {
     @JoinColumn(name = "id_pedido")
     private Pedidos pedido;
     private Double total;
+
     @CreationTimestamp
     @Column(name = "fecha_hora", columnDefinition = "TIMESTAMPTZ")
     private OffsetDateTime fechaHora;
+
     @Enumerated(EnumType.STRING)
-    private EstadoFactura estadoFactura;
+    private EstadoFactura estado;
+
+    @Column(name = "medio_de_pago")
     @Enumerated(EnumType.STRING)
     private MedioDePago medioDePago;
 

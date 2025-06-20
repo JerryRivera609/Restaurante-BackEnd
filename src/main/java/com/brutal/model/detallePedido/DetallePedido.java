@@ -5,10 +5,7 @@ import com.brutal.model.mesas.Estado;
 import com.brutal.model.pedidos.Pedidos;
 import com.brutal.model.productos.Productos;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Table(name = "detalles_pedido")
@@ -16,7 +13,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-
 public class DetallePedido extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "id_pedido")
