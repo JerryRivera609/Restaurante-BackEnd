@@ -8,9 +8,12 @@ import com.brutal.model.detallePedido.DetallePedido;
 import com.brutal.model.facturas.EstadoFactura;
 import com.brutal.model.facturas.Factura;
 import com.brutal.model.facturas.MedioDePago;
+import com.brutal.model.mesas.Estado;
+import com.brutal.model.mesas.Mesas;
 import com.brutal.model.pedidos.Pedidos;
 import com.brutal.repository.DetallePedidoRepository;
 import com.brutal.repository.FacturaRepository;
+import com.brutal.repository.MesasRepository;
 import com.brutal.repository.PedidosRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -24,11 +27,13 @@ public class FacturaService extends GenericService <Factura, Long> {
     private final FacturaRepository facturaRepository;
     private final PedidosRepository pedidosRepository;
     private final DetallePedidoRepository detallePedidoRepository;
-    public FacturaService (FacturaRepository facturaRepository, PedidosRepository pedidosRepository, DetallePedidoRepository detallePedidoRepository){
+    private final MesasRepository mesasRepository;
+    public FacturaService (FacturaRepository facturaRepository, PedidosRepository pedidosRepository, DetallePedidoRepository detallePedidoRepository, MesasRepository mesasRepository){
         super(facturaRepository);
         this.facturaRepository = facturaRepository;
         this.pedidosRepository = pedidosRepository;
         this.detallePedidoRepository = detallePedidoRepository;
+        this.mesasRepository = mesasRepository;
     }
 
     public Factura crearFactura(FacturaRequest dto){
@@ -90,6 +95,15 @@ public class FacturaService extends GenericService <Factura, Long> {
         }
         if (request.getMedioDePago() != null){
             factura.setMedioDePago(MedioDePago.valueOf(request.getMedioDePago()));
+        }
+
+        if ("PAGADO".equals(request.getEstado())){
+            Pedidos pedidos = factura.getPedido();
+            if (pedidos.getEstado() != null && pedidos.getMesa() != null){
+                Mesas mesa = pedidos.getMesa();
+                mesa.setEstado(Estado.Disponible);
+                mesasRepository.save(mesa);
+            }
         }
 
         facturaRepository.save(factura);
