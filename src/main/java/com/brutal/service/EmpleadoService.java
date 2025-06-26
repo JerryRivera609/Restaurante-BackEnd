@@ -12,4 +12,8 @@ public class EmpleadoService extends GenericService <Empleado, Long> {
         super(empleadoRepository);
         this.empleadoRepository = empleadoRepository;
     }
+
+    public Empleado saveEmpleado(Empleado empleado){
+        return empleadoRepository.save(empleado);
+    }
 }
