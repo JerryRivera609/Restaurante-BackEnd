@@ -37,8 +37,6 @@ public class FacturaController extends GenericController <Factura, Long> {
 
     @PutMapping("/{id}")
     public ResponseEntity<String> actualizarFactura(@PathVariable Long id, @RequestBody ActualizarFacturaRequest request){
-        System.out.println("Estado recibido: " + request.getEstado());
-        System.out.println("Medio de pago recibido: " + request.getMedioDePago());
         facturaService.actualizarFactura(id, request);
         return ResponseEntity.ok("Factura Actualizada");
     }

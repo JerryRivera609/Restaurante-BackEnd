@@ -30,4 +30,14 @@ public class EmpleadoController extends GenericController <Empleado, Long> {
         return  ResponseEntity.status(HttpStatus.CREATED).body(empleado);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<?> actualizar(@PathVariable Long id, @RequestBody EmpleadosRequest dto){
+        try {
+            Empleado actualiza = empleadoService.actualizarEmpleado(id, dto);
+            return ResponseEntity.ok(actualiza);
+        } catch (RuntimeException e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
+
 }
