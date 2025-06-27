@@ -40,4 +40,14 @@ public class EmpleadoController extends GenericController <Empleado, Long> {
         }
     }
 
+    @PutMapping("/desactivar/{id}")
+    public ResponseEntity<?> desactivarEmpleado(@PathVariable Long id){
+        try {
+            empleadoService.desactivarEmpleado(id);
+            return ResponseEntity.ok().body("Empleado Desactivado");
+        } catch (Exception e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
+
 }

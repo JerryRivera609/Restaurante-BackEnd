@@ -22,4 +22,6 @@ public class Empleado extends BaseEntity {
     private String contrasenia;
     @Enumerated(EnumType.STRING)
     private Rol rol;
+    @Column(nullable = false)
+    private boolean activo = true;
 }

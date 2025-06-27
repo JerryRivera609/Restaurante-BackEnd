@@ -7,6 +7,8 @@ import com.brutal.model.empleado.Rol;
 import com.brutal.repository.EmpleadoRepository;
 import org.springframework.stereotype.Service;
 
+import javax.crypto.ExemptionMechanism;
+
 @Service
 public class EmpleadoService extends GenericService <Empleado, Long> {
     private final EmpleadoRepository empleadoRepository;
@@ -30,5 +32,12 @@ public class EmpleadoService extends GenericService <Empleado, Long> {
         empleado.setRol(rol);
 
         return empleadoRepository.save(empleado);
+    }
+
+    public void desactivarEmpleado(Long id){
+        Empleado empleado = empleadoRepository.findById(id).
+                orElseThrow(()-> new RuntimeException("No se encontro el usuario"));
+        empleado.setActivo(false);
+        empleadoRepository.save(empleado);
     }
 }
