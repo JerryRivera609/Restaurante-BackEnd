@@ -18,11 +18,17 @@ public class ProductosController extends GenericController <Pedidos, Long> {
         this.productosService = productosService;
     }
 
+    @PostMapping("/guardar")
+    public ResponseEntity<Productos> crearProducto(@RequestBody ProductoRequest dto){
+        Productos productos = productosService.crearProductos(dto);
+        return ResponseEntity.ok(productos);
+    }
+
     @PutMapping("/{id}")
-    public ResponseEntity<?> actualizarProducto(@PathVariable Long id, @RequestBody ProductoRequest dto){
+    public ResponseEntity<String> actualizarProducto(@PathVariable Long id, @RequestBody ProductoRequest dto){
         try {
             Productos actualiza = productosService.ActualizarProducto(id, dto);
-            return ResponseEntity.ok(actualiza);
+            return ResponseEntity.ok("Producto Actualizado");
         } catch (Exception e){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }

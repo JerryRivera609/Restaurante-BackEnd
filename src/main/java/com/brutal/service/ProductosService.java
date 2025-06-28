@@ -16,6 +16,18 @@ public class ProductosService extends GenericService <Pedidos, Long> {
         this.productoRepository = productoRepository;
     }
 
+
+    public Productos crearProductos(ProductoRequest dto){
+        Productos productos = new Productos();
+        productos.setNombre(dto.getNombre());
+        Tipo tipo = Tipo.valueOf(dto.getTipo().toUpperCase());
+        productos.setTipo(tipo);
+        productos.setPrecio(dto.getPrecio());
+        productos.setResumen(dto.getResumen());
+        productos.setImg(dto.getImg());
+        return productoRepository.save(productos);
+    }
+
     public Productos ActualizarProducto(Long id, ProductoRequest dto){
         Productos productos = productoRepository.findById(id).
                 orElseThrow(()-> new RuntimeException("No se Encontró el producto"));
