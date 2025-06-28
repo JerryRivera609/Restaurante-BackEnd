@@ -12,6 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.DateTimeException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @RestController
@@ -27,6 +30,20 @@ public class FacturaController extends GenericController <Factura, Long> {
     @GetMapping("/detalleFactura")
     public ResponseEntity<List<FacturaResponse>> obtenerFacturas(){
         return ResponseEntity.ok(facturaService.obtenerTodasLasFacturas());
+    }
+
+    @GetMapping("/fecha")
+    public ResponseEntity<?> obtenerFacturaPorFecha(String fecha){
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate fechaParseada = LocalDate.parse(fecha, formatter);
+
+            List<Factura> facturas = facturaService.obtenerFacturaPorFecha(fechaParseada);
+            return ResponseEntity.ok(facturas);
+
+        } catch(DateTimeException e){
+            return ResponseEntity.badRequest().body("Formato de fecha invalido, el formato es dd/MM/yyyy");
+        }
     }
 
     @PostMapping("/guardar")

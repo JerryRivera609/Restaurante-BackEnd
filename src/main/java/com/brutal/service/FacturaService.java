@@ -18,6 +18,10 @@ import com.brutal.repository.PedidosRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
 import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
@@ -107,6 +111,13 @@ public class FacturaService extends GenericService <Factura, Long> {
         }
 
         facturaRepository.save(factura);
+    }
+
+    public List<Factura> obtenerFacturaPorFecha(LocalDate fecha){
+        OffsetDateTime inicioDeDia = fecha.atStartOfDay().atOffset(ZoneOffset.UTC);
+        OffsetDateTime finDeDia = fecha.atTime(LocalTime.MAX).atOffset(ZoneOffset.UTC);
+
+        return facturaRepository.findByFechaHoraBetween(inicioDeDia, finDeDia);
     }
 
 
