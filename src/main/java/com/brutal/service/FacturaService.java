@@ -117,7 +117,7 @@ public class FacturaService extends GenericService <Factura, Long> {
         OffsetDateTime inicioDeDia = fecha.atStartOfDay().atOffset(ZoneOffset.UTC);
         OffsetDateTime finDeDia = fecha.atTime(LocalTime.MAX).atOffset(ZoneOffset.UTC);
 
-        return facturaRepository.findByFechaHoraBetween(gitinicioDeDia, finDeDia);
+        return facturaRepository.findByFechaHoraBetween(inicioDeDia, finDeDia);
     }
 
 

@@ -25,12 +25,9 @@ public class ProductosController extends GenericController <Pedidos, Long> {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<String> actualizarProducto(@PathVariable Long id, @RequestBody ProductoRequest dto){
-        try {
-            Productos actualiza = productosService.ActualizarProducto(id, dto);
-            return ResponseEntity.ok("Producto Actualizado");
-        } catch (Exception e){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-        }
+    public ResponseEntity<Productos> actualizarProducto(@PathVariable Long id, @RequestBody ProductoRequest dto){
+            Productos actualizado = productosService.ActualizarProducto(id, dto);
+            return ResponseEntity.ok(actualizado);
+
     }
 }
